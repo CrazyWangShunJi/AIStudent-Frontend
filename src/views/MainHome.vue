@@ -1,135 +1,114 @@
 <template>
-  <el-row class="main-container" :gutter="20">
-    <!-- 左侧预览区域 -->
-    <el-col :span="6">
-      <MainConfig />
-    </el-col>
+  <div class="three-column-wrapper">
+    <div class="content-container">
+      <!-- 左侧边栏 -->
+      <LeftView />
 
-    <!-- 中间解析结果 -->
-    <el-col :span="12">
-      <el-card style="height: 100%;">
-        <h2 class="title">识别结果</h2>
-        <div class="content-section">
-          <el-text class="content-title">作者姓名</el-text>
-          <el-text class="content-value">大师作声说视频</el-text>
+      <!-- 主内容区 -->
+      <main class="main-content">
+        <MainUpload />
+      </main>
 
-          <el-text class="content-title">学号</el-text>
-          <el-text class="content-value">您的学号</el-text>
-
-          <el-text class="content-title">专业</el-text>
-          <el-text class="content-value">您的专业</el-text>
-
-          <el-divider />
-
-          <el-text class="section-title">摘要</el-text>
-          <el-text class="content-text">
-            这一部分为摘要，使用摘要相关的样式。标题使用摘要标题样式...
-          </el-text>
-
-          <el-text class="section-title">关键字</el-text>
-          <el-text class="content-text">毕业论文，模板</el-text>
-        </div>
-      </el-card>
-    </el-col>
-
-    <!-- 右侧结果面板 -->
-    <el-col :span="6">
-      <el-tabs type="border-card" style="height: 89%;">
-        <el-tab-pane label="试卷结果">
-          <pre class="code-block">{{ sampleJSON }}</pre>
-        </el-tab-pane>
-        <el-tab-pane label="AI解析">
-          <div class="reference-sample">
-            <!-- 标准样例内容 -->
-          </div>
-        </el-tab-pane>
-      </el-tabs>
-
-      <el-card class="mt-3">
-        <el-input
-          placeholder="输入在线文件URL，回车/Enter发起调用"
-          @keyup.enter="handleUrlSubmit"
-        />
-        <el-text class="tip">支持的文件格式：png, .jpg, jpg, doc, docx 等</el-text>
-
-        <div class="action-buttons mt-4">
-          <el-button type="primary">复制结果</el-button>
-          <el-button>问题反馈</el-button>
-        </div>
-      </el-card>
-    </el-col>
-  </el-row>
+      <!-- 右侧边栏 -->
+      <RightView />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import MainConfig from '@/components/MainConfig/index.vue'
+import MainUpload from '../components/MainUpload/index.vue';
+import LeftView from '../components/LeftView/index.vue';
+import RightView from '../components/RightView/index.vue';
 
-const sampleJSON = `{
-  "author": "大师作声说视频",
-  "student_id": "您的学号",
-  "major": "您的专业"
-}`
-
-const handleUrlSubmit = () => {
-  // 处理URL提交逻辑
-}
 </script>
-
-<style lang="less" scoped>
-.main-container {
-  position: relative;
-  top: 62px;
-  height: 73vh;
+<style scoped lang="less">
+.three-column-wrapper {
+  margin: 0 auto;
   padding: 20px;
-  width: 100%;
-  background-color: #f5f7fa;
-
-}
-
-.preview-card {
-  height: calc(100vh - 40px);
-}
-
-.content-section {
-  line-height: 2em;
-}
-
-.content-title {
-  display: block;
-  color: #909399;
-  font-size: 0.9em;
-}
-
-.content-value {
-  display: block;
-  margin-bottom: 1em;
-  font-size: 1.1em;
-}
-
-.section-title {
-  display: block;
-  font-weight: bold;
-  margin: 1em 0;
-}
-
-.code-block {
-  background: #f8f8f8;
-  padding: 10px;
-  border-radius: 4px;
-  max-height: 400px;
-  overflow: auto;
-}
-
-.tip {
-  color: #999;
-  font-size: 0.8em;
-  display: block;
-  margin-top: 8px;
-}
-
-.action-buttons {
+  height: 100%;
+  box-sizing: border-box;
   display: flex;
-  gap: 12px;
-  justify-content: center;
+}
+
+.content-container {
+  width: 100%;
+  height:100%;
+  display: flex;
+  gap: 20px;
+  position: relative;
+
+  // 公共侧边栏样式
+  aside {
+    flex-shrink: 0;  // 禁止侧边栏压缩
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .left-sidebar {
+    width: 200px;
+    ul {
+      list-style: none;
+      padding: 0;
+      li {
+        padding: 8px 0;
+        cursor: pointer;
+        &:hover {
+          color: #409eff;
+        }
+      }
+    }
+  }
+
+  .main-content {
+    flex-grow: 1;  // 主内容区自动填充剩余空间
+    min-width: 0;  // 修复flex内容溢出问题
+    background: #f2f4f7;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+    article {
+      margin-bottom: 20px;
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+  }
+
+  .right-sidebar {
+    width: 400px;
+    .widget {
+      button {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+        padding: 8px;
+      }
+    }
+  }
+}
+
+// 响应式处理
+@media (max-width: 1200px) {
+  .content-container {
+    .right-sidebar {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column;
+
+    .left-sidebar {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .main-content {
+      order: 1; // 主内容下移
+    }
+  }
 }
 </style>

@@ -6,7 +6,7 @@
 
         </div>
         <div class="header-container">
-          <router-link to="/" class="home-link" @click.native="handleHomeClick"> 首页 </router-link>
+          <router-link to="/" class="home-link" @click.native="handleHomeClick"> {{$t('home')}} </router-link>
         </div>
         <div class="header-right">
           <el-select
@@ -48,7 +48,8 @@ const languages = ref([
 const currentLanguage = ref(langConfig[locale.value])
 
 const handleLanguageChange = (val) => {
-  locale.value = val
+  locale.value = val;
+
 }
 
 const handleHomeClick = () => {}
@@ -56,7 +57,6 @@ const handleHomeClick = () => {}
 
 <style lang="less" scoped>
 .main-header {
-  /* 保持原有 fixed 定位 */
   position: fixed;
   top: 0;
   left:0;
@@ -79,8 +79,12 @@ const handleHomeClick = () => {}
 
   .header-container {
     position: absolute;
-    left: 50%;
+    left: 43%;
     transform: translateX(-50%);
+
+    .home-link {
+      color: #334488;
+    }
   }
 
   .header-right {

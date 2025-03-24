@@ -1,4 +1,15 @@
 {
   "title": "智能试卷分析系统",
-  "home": "首页"
+  "home": "首页",
+  "OcrResult": "OCR解析结果区域",
+  "AIResult": "AI解析结果区域",
+  "clickUpload": "点击或拖拽上传图片",
+  "supportLimit":"支持格式：JPEG/PNG (最大5MB)",
+  "OcrTitle": "Ocr解析结果",
+  "AITitle": "AI解析结果",
+  "configMenu": "配置菜单",
+  "uploadFile": "上传文件",
+  "uploadMaxLimit": "文件大小不能超过 {maxFileSize}MB",
+  "uploadFileTypeLimit": "仅支持JPG/JPEG/PNG格式",
+  "uploadCountLimit": "今日可用次数：5次"
 }

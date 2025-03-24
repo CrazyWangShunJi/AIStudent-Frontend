@@ -1,0 +1,15 @@
+{
+  "title": "Intelligent test paper analysis system",
+  "home": "Home",
+  "OcrResult": "OCR parsing result area",
+  "AIResult": "AI parses the result area",
+  "clickUpload": "Click or drag to upload an image",
+  "supportLimit":"Supported format: JPEG/PNG (Max. 5MB)",
+  "OcrTitle": "Ocr analysis result",
+  "AITitle": "AI analysis result",
+  "configMenu": "Configuration menu",
+  "uploadFile": "Upload file",
+  "uploadMaxLimit": "The file size cannot exceed {maxFileSize}MB",
+  "uploadFileTypeLimit": "Only JPG/JPEG/PNG formats are supported",
+  "uploadCountLimit": "Available today: 5 times"
+}
