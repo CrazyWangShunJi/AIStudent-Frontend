@@ -95,7 +95,7 @@ const handleHomeClick = () => {}
       .title-text {
         font-family: 'Dancing Script', sans-serif;
         font-size: 30px;
-        font-weight: 600;
+        font-weight: 1000;
         color: #22405c;
       }
     }
