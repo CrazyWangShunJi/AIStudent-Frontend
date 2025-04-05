@@ -66,7 +66,6 @@ const handleDrop = (e: DragEvent) => {
 
 // 文件验证
 const validateFile = (file: any) => {
-  console.log('file', file, file.type)
   const maxSize = maxFileSize * 1024 * 1024
   const isValidType = ['image/jpeg', 'image/png', 'image/jpg'].includes(file.raw.type)
 
@@ -94,7 +93,6 @@ const loadImage = (file: File) => {
 
 // 处理缩放变化
 const handleScaleChange = (scale: number) => {
-  console.log('当前缩放比例:', scale)
 }
 </script>
 

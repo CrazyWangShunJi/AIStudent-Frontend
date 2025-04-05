@@ -52,10 +52,8 @@ const errMsgSize = t('uploadMaxLimit', {maxFileSize: maxFileSize});
 // 计算偏移量
 const calculateOffset = () => {
   nextTick(() => { // 确保 DOM 更新完成
-    console.log('affixButton.value', affixButton.value)
     if (affixButton.value) {
       // 使用 getBoundingClientRect 获取精确高度
-      console.log('affixButton.value', affixButton.value)
       const buttonHeight = affixButton.value.getBoundingClientRect().height
       affixOffset.value = window.innerHeight - buttonHeight - 20
     }

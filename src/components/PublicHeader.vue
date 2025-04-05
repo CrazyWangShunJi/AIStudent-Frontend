@@ -3,10 +3,10 @@
     <div class="main-header">
       <div class="header-content">
         <div class="header-left">
-
-        </div>
-        <div class="header-container">
-          <router-link to="/" class="home-link" @click.native="handleHomeClick"> {{$t('home')}} </router-link>
+          <router-link to="/" @click.native="handleHomeClick" class="header-link">
+            <img src="@/assets/logo.jpg" class="home-link" />
+            <span class="title-text">QuickCheck</span>
+          </router-link>
         </div>
         <div class="header-right">
           <el-select
@@ -57,17 +57,19 @@ const handleHomeClick = () => {}
 
 <style lang="less" scoped>
 .main-header {
+  background-color: #ffffff;
   position: fixed;
   top: 0;
   left:0;
   width: 100%;
-  height: 60px;
+  height: 64px;
   padding: 0;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* 新增外层容器样式 */
 .header-content {
+  background-color: #ffffff;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -77,13 +79,25 @@ const handleHomeClick = () => {}
   margin: 0 auto;
   position: relative;
 
-  .header-container {
-    position: absolute;
-    left: 43%;
-    transform: translateX(-50%);
+  .header-left {
+    display: flex;
+    align-items: center;
+    .header-link {
+      display: flex;
+      align-items: center;
+      .home-link {
+        height: 44px;
+        width: auto;
+        margin-right: 20px;
+        color: #334488;
+      }
 
-    .home-link {
-      color: #334488;
+      .title-text {
+        font-family: 'Dancing Script', sans-serif;
+        font-size: 30px;
+        font-weight: 600;
+        color: #22405c;
+      }
     }
   }
 

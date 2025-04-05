@@ -1,5 +1,13 @@
 @import './base.css';
 
+@font-face {
+  font-family: 'Dancing Script';  /* 自定义字体名称 */
+  src: url('@/assets/Dancing_Script/DancingScript-VariableFont_wght.ttf') format('truetype');  /* 路径根据项目结构调整 */
+  font-weight: 400;             /* 字重（普通） */
+  font-style: normal;           /* 样式（非斜体） */
+  font-display: swap;           /* 避免文字闪烁（加载完成前显示备用字体） */
+}
+
 /* #app {
   max-width: 1280px;
   margin: 0 auto;
