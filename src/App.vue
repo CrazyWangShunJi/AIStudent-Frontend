@@ -76,7 +76,7 @@ a:hover {
   margin-top: 60px;
   height: calc(100vh - 60px);  /* 精确计算可视高度 */
   overflow-y: hidden;           /* 仅在此容器显示滚动条 */
-  background: #f5f6f7;
+  background: #ffffff;
 
   /* 防止内容抖动 */
   padding-left: calc(100vw - 100%);
