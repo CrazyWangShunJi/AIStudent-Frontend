@@ -37,6 +37,8 @@
 import { storeToRefs } from 'pinia';
 import { useCanvasImg } from '@/stores/canvasImg.ts';
 import { ElMessage } from 'element-plus';
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 interface UploadFile {
   name: string
@@ -75,6 +77,10 @@ const loadImage = (file: File) => {
   reader.onload = (e) => {
     // 获取图片的base64形式
     imgSrc.value = e.target?.result as string
+
+    router.push({
+      path: '/parseResult'
+    })
   }
   reader.readAsDataURL(file)
 }

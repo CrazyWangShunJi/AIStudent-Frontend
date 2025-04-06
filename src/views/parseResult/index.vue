@@ -1,9 +1,11 @@
 <template>
-  <div>{{ $t('OcrResult') }}</div>
+  <div>
+    1111111
+  </div>
 </template>
 
 <script setup lang="ts">
 </script>
 
-<style lang="less" scoped>
+<style scoped lang="less">
 </style>
