@@ -89,7 +89,7 @@ const getAiResult = async (str: string) => {
   const response = await getAiService(str);
   console.log('response', response)
   eventBus.emit('endProgess')
-  AiParseResult.value = response.data;
+  AiParseResult.value = response.data.data;
 
   router.push({
     path: '/parseResult',
