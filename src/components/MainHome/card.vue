@@ -32,7 +32,7 @@
 
       <template #footer>
         <div class="card-footer">
-          <el-button class="footer-btn"  size="large" round color="#8d37ff">
+          <el-button class="footer-btn"  size="large" round color="#8d37ff" @click="getResult">
             Get Ai Parse Result
           </el-button>
         </div>
@@ -48,6 +48,7 @@ import { AiResult } from '@/stores/AiResult';
 import { ElMessage } from 'element-plus';
 import { useRouter } from 'vue-router';
 import { getAiService } from '@/server/utils';
+import eventBus from '@/utils/eventBus';
 
 const router = useRouter()
 
@@ -87,7 +88,12 @@ const validateFile = (file: any) => {
 const getAiResult = async (str: string) => {
   const response = await getAiService(str);
   console.log('response', response)
+  eventBus.emit('endProgess')
   AiParseResult.value = response.data;
+
+  router.push({
+    path: '/parseResult',
+  })
 }
 
 // 加载图片
@@ -96,6 +102,7 @@ const loadImage = (file: File) => {
   reader.onload = async (e) => {
     // 获取图片的base64形式
     imgSrc.value = e.target?.result as string
+    eventBus.emit('startProgress')
     getAiResult(imgSrc.value);
     // router.push({
     //   path: '/parseResult'
@@ -108,6 +115,12 @@ const loadImage = (file: File) => {
 const handleUpload = (file: UploadFile) => {
   if (!validateFile(file)) return
   loadImage(file.raw)
+}
+
+const getResult = () => {
+  router.push({
+    path: '/parseResult',
+  })
 }
 </script>
 
