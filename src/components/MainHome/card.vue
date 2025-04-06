@@ -29,6 +29,14 @@
           </div>
         </el-upload>
       </div>
+
+      <template #footer>
+        <div class="card-footer">
+          <el-button class="footer-btn"  size="large" round color="#8d37ff">
+            Get Ai Parse Result
+          </el-button>
+        </div>
+      </template>
     </el-card>
   </div>
 </template>
@@ -36,8 +44,11 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { useCanvasImg } from '@/stores/canvasImg.ts';
+import { AiResult } from '@/stores/AiResult';
 import { ElMessage } from 'element-plus';
-import { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router';
+import { getAiService } from '@/server/utils';
+
 const router = useRouter()
 
 interface UploadFile {
@@ -49,6 +60,9 @@ interface UploadFile {
 
 const store = useCanvasImg();
 const { canvasFile, imgSrc } = storeToRefs(store);
+
+const AiStore = AiResult();
+const { AiParseResult } = storeToRefs(AiStore);
 
 const maxFileSize = 5 // MB
 
@@ -70,17 +84,22 @@ const validateFile = (file: any) => {
   return true
 }
 
+const getAiResult = async (str: string) => {
+  const response = await getAiService(str);
+  console.log('response', response)
+  AiParseResult.value = response.data;
+}
 
 // 加载图片
 const loadImage = (file: File) => {
   const reader = new FileReader()
-  reader.onload = (e) => {
+  reader.onload = async (e) => {
     // 获取图片的base64形式
     imgSrc.value = e.target?.result as string
-
-    router.push({
-      path: '/parseResult'
-    })
+    getAiResult(imgSrc.value);
+    // router.push({
+    //   path: '/parseResult'
+    // })
   }
   reader.readAsDataURL(file)
 }
@@ -95,6 +114,9 @@ const handleUpload = (file: UploadFile) => {
 <style lang="less" scoped>
 /deep/ .el-card__header {
   border-bottom: 0px
+}
+/deep/ .el-card__footer {
+  border: 0px;
 }
 /deep/.el-upload-dragger {
   background-color: #f9fafc;
@@ -155,6 +177,17 @@ const handleUpload = (file: UploadFile) => {
             color:#409eff;
           }
         }
+      }
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row-reverse;
+
+      .footer-btn {
+
       }
     }
   }
