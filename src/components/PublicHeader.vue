@@ -8,6 +8,15 @@
             <span class="title-text">QuickCheck</span>
           </router-link>
         </div>
+        <div class="header-middle" v-if="showButton">
+          <el-button
+            size="default"
+            class="ask-button"
+            @click="modalVisible = true"
+          >
+            <span>What's your next question?</span>
+          </el-button>
+        </div>
         <div class="header-right">
           <el-select
             v-model="currentLanguage"
@@ -27,16 +36,24 @@
         </div>
       </div>
     </div>
+
+    <el-dialog v-model="modalVisible">
+      <card />
+    </el-dialog>
   </header>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed  } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { UserFilled } from '@element-plus/icons-vue'
-import { ElHeader, ElSelect, ElOption, ElAvatar } from 'element-plus'
+import { ElHeader, ElSelect, ElOption, ElAvatar, ElButton } from 'element-plus';
+import { useRoute } from 'vue-router';
+import card from '@/components/MainHome/card.vue';
 
-const { locale } = useI18n()
+const route = useRoute();
+const showButton = computed(() => route.path !== '/');
+const { locale } = useI18n();
 const langConfig = {
   'zh-CN': '中文',
   en: 'english',
@@ -52,7 +69,9 @@ const handleLanguageChange = (val) => {
 
 }
 
-const handleHomeClick = () => {}
+const handleHomeClick = () => {};
+
+const modalVisible = ref(false)
 </script>
 
 <style lang="less" scoped>
@@ -98,6 +117,14 @@ const handleHomeClick = () => {}
         font-weight: 1000;
         color: #22405c;
       }
+    }
+  }
+
+  .header-middle {
+    .ask-button {
+      background-color: #f8f5ff ;
+      border: 0px;
+      color: #8d37ff;
     }
   }
 
