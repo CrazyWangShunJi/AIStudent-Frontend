@@ -12,7 +12,8 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      'katex': fileURLToPath(new URL('node_modules/katex', import.meta.url))
     },
   },
   server: {
@@ -23,14 +24,4 @@ export default defineConfig({
       }
     }
   },
-  css: {
-    preprocessorOptions: {
-      less: {
-        modifyVars: {
-          // 确保包含 KaTeX 字体文件
-          hack: `true; @import "${require.resolve('katex/dist/katex.less')}";`
-        }
-      }
-    }
-  }
 })

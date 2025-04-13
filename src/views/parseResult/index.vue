@@ -3,7 +3,7 @@
 
     <el-card class="card-question">
       <template #header>
-        <div class="card-header">
+        <div class="card-header-custom">
           <div class="header-left">
             <span class="header-text">Question</span>
           </div>
@@ -24,8 +24,7 @@
         </div>
       </template>
       <div class="markdown-container">
-        <div class="markdown-body" v-html="processedContent">
-        </div>
+        <parserAnswer></parserAnswer>
       </div>
     </el-card>
 
@@ -37,54 +36,16 @@ import { ref, computed, onMounted } from 'vue'
 import { storeToRefs } from 'pinia';
 import { useCanvasImg } from '@/stores/canvasImg.ts';
 import { AiResult } from '@/stores/AiResult';
-import { mdStr } from '../../../mock/001.ts';
-import MarkdownIt from 'markdown-it';
-import hljs from 'highlight.js'
-import DOMPurify from 'dompurify'
-import markdownItKatex from '@traptitech/markdown-it-katex'
 import 'katex/dist/katex.min.css'
 import 'highlight.js/styles/github.css'
-import 'github-markdown-css/github-markdown.css'
+import 'github-markdown-css/github-markdown.css';
+import parserAnswer from './parserAnswer.vue';
 
 const store = useCanvasImg();
 const AiStore = AiResult();
 
 const { imgSrc } = storeToRefs(store);
 const { AiParseResult } = storeToRefs(AiStore);
-
-const md = new MarkdownIt({
-  html: true,
-  linkify: true,
-  typographer: true,
-  highlight: (str: string, lang: any) => {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return `<pre class="hljs"><code>${hljs.highlight(str, {
-          language: lang,
-          ignoreIllegals: true
-        }).value
-          }</code></pre>`
-      } catch (__) { }
-    }
-    return `<pre class="hljs"><code>${md.utils.escapeHtml(str)}</code></pre>`
-  }
-})
-
-md.use(markdownItKatex, {
-  throwOnError: false,
-  output: 'mathml'
-})
-
-// 处理 markdown 内容
-const processedContent = computed(() => {
-  const rawHtml = md.render(AiParseResult.value);
-  return DOMPurify.sanitize(rawHtml)
-})
-
-onMounted(() => {
-  hljs.configure({ cssSelector: 'pre code' })
-  hljs.highlightAll()
-})
 </script>
 
 <style scoped lang="less">
@@ -105,18 +66,20 @@ onMounted(() => {
   align-items: center;
   padding-top: 5rem;
   gap: 50px;
+  overflow-y: auto;
 
   .card-question {
     width: 100%;
-    height: 300px;
-    min-height: 300px;
+    height: 200px;
+    min-height: 200px;
     max-width: 1378px;
     border-radius: 20px;
 
-    .card-header {
+    .card-header-custom {
       display: flex;
       justify-content: space-between;
       align-items: center; // 垂直居中
+      margin-bottom: 0px;
 
       .header-left {
         display: flex;
@@ -134,12 +97,12 @@ onMounted(() => {
     }
 
     .image-canvas {
-      height: 200px;
+      height: 150px;
       background: rgba(241, 245, 249, 0.5);
       border-radius: 8px;
-
+      margin-top: -27px;
       .image-content {
-        height: 200px;
+        height: 150px;
         object-fit: contain;
       }
     }
@@ -149,7 +112,8 @@ onMounted(() => {
     border-radius: 20px;
     width: 100%;
     max-width: 1378px;
-    overflow-y: auto;
+    flex: 1;
+    overflow: visible;
 
     .card-header {
       display: flex;
