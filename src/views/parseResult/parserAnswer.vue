@@ -8,7 +8,7 @@
         :class="{ 'expanded': activeHeaders.includes('header') }"
       >
         <template #title>
-          <span class="collapse-title">考试结果概览</span>
+          <span class="collapse-title">概览</span>
         </template>
         <div class="content left-align" v-html="formatContent(resultData.header)"></div>
       </el-collapse-item>
@@ -26,14 +26,15 @@
               <span>第 {{ q.number ?  q.number : (index + 1)}} 题</span>
             </div>
           </template>
-          <div class="correct-answer">
-            <div class="answer-title">答案</div>
+          <div class="correct-answer" v-if="q.answer">
+            <div class="answer-title">答案: </div>
             <div class="answer-content">
               {{ q.answer }}
             </div>
           </div>
-          <div class="correct-parse">
-            <div class="parse-title">解析</div>
+          <br></br>
+          <div class="correct-parse" v-if="q.parse">
+            <div class="parse-title">解析: </div>
             <div class="parse-content left-align" v-html="formatContent(q.parse)"></div>
           </div>
         </el-collapse-item>
@@ -256,14 +257,23 @@ watch(() => resultData.value.questions, (newVal) => {
     }
 
     .correct-answer {
-
       .answer-title {
-        font-size: 15px;
-        font-weight: 500;
-        color: #42b983;
+        font-size: 14px;
+        font-weight: 600;
       }
 
       .answer-content {
+        margin-left: 10px;
+      }
+    }
+
+    .correct-parse {
+      .parse-title {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .parse-content {
         margin-left: 10px;
       }
     }
