@@ -6,3 +6,6 @@ declare module '*.vue' {
 }
 
 declare module 'markdown-it'
+
+declare module 'resolve'
+

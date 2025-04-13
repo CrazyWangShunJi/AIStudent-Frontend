@@ -77,7 +77,7 @@ md.use(markdownItKatex, {
 
 // 处理 markdown 内容
 const processedContent = computed(() => {
-  const rawHtml = md.render(mdStr);
+  const rawHtml = md.render(AiParseResult.value);
   return DOMPurify.sanitize(rawHtml)
 })
 
