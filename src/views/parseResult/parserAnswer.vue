@@ -1,38 +1,63 @@
 <template>
   <div class="result-container">
-    <!-- 头部信息 -->
-    <div class="header-box" v-if="resultData.header">
-      <div class="title">考试结果概览</div>
-      <div class="content" v-html="formatContent(resultData.header)"></div>
+    <!-- Header 折叠面板 -->
+    <el-collapse v-model="activeHeaders" v-if="resultData.header">
+      <el-collapse-item 
+        name="header" 
+        class="collapse-card-header"
+        :class="{ 'expanded': activeHeaders.includes('header') }"
+      >
+        <template #title>
+          <span class="collapse-title">考试结果概览</span>
+        </template>
+        <div class="content left-align" v-html="formatContent(resultData.header)"></div>
+      </el-collapse-item>
+    </el-collapse>
+
+    <!-- 每个题目独立折叠面板 -->
+    <div v-for="(q, index) in resultData.questions" :key="q.number">
+      <el-collapse v-model="activeQuestions">
+        <el-collapse-item 
+          :name="'question-' + index"
+          class="collapse-card-question"
+        >
+          <template #title>
+            <div class="question-header">
+              <span>第 {{ q.number ?  q.number : (index + 1)}} 题</span>
+            </div>
+          </template>
+          <div class="correct-answer">
+            <div class="answer-title">答案</div>
+            <div class="answer-content">
+              {{ q.answer }}
+            </div>
+          </div>
+          <div class="correct-parse">
+            <div class="parse-title">解析</div>
+            <div class="parse-content left-align" v-html="formatContent(q.parse)"></div>
+          </div>
+        </el-collapse-item>
+      </el-collapse>
     </div>
 
-    <!-- 题目解析 -->
-    <div 
-      v-for="q in resultData.questions" 
-      :key="q.number"
-      class="question-box"
-    >
-      <div class="question-header">
-        第 {{ q.number }} 题 
-        <span class="correct-answer">正确答案：{{ q.answer }}</span>
-      </div>
-      <div 
-        class="parse-content" 
-        v-html="formatContent(q.parse)"
-      ></div>
-    </div>
-
-    <!-- 底部建议 -->
-    <div class="footer-box" v-if="resultData.footer">
-      <div class="title">总体学习建议</div>
-      <div class="content" v-html="formatContent(resultData.footer)"></div>
-    </div>
+    <!-- Footer 折叠面板 -->
+    <el-collapse v-model="activeFooters" v-if="resultData.footer">
+      <el-collapse-item 
+        name="footer" 
+        class="collapse-card-footer"
+      >
+        <template #title>
+          <span class="collapse-title">总体学习建议</span>
+        </template>
+        <div class="content left-align" v-html="formatContent(resultData.footer)"></div>
+      </el-collapse-item>
+    </el-collapse>
   </div>
 </template>
 
 <script setup lang="ts">
 import { Str } from '../../../mock/001.ts'; // 假设这是你的 XML 字符串
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import katex from 'katex';
 import 'katex/dist/katex.css';
 
@@ -48,10 +73,6 @@ interface ResultData {
   questions: QuestionItem[];
   footer?: string;
 }
-
-// 类型定义保持不变
-interface QuestionItem {/* 同上 */}
-interface ResultData {/* 同上 */}
 
 // 响应式数据
 const resultData = ref<ResultData>({
@@ -139,12 +160,22 @@ const formatContent = (content: string) => {
   return formatted.replace(/\n/g, '<br>');
 };
 
+// 控制展开状态
+const activeHeaders = ref(['header'])
+const activeQuestions = ref<string[]>(resultData.value.questions.map((_, index) => `question-${index}`))
+const activeFooters = ref(['footer'])
+
 onMounted(() => {
   resultData.value = parseResultXML(Str);
 });
+
+// 动态更新问题展开状态
+watch(() => resultData.value.questions, (newVal) => {
+  activeQuestions.value = newVal.map((_, index) => `question-${index}`)
+}, { deep: true })
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 /* 确保公式正确显示 */
 :deep(.katex) {
   font-size: 1.1em !important;
@@ -156,55 +187,99 @@ onMounted(() => {
   margin: 0.5em 0;
   overflow: auto hidden;
 }
-.result-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-.header-box, .footer-box {
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 30px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.title {
-  font-size: 1.2em;
-  font-weight: 600;
-  color: #2c3e50;
-  margin-bottom: 15px;
-}
-
-.question-box {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
-  background: white;
-}
-
-.question-header {
-  font-size: 1.1em;
-  font-weight: 500;
-  margin-bottom: 15px;
-}
-
-.correct-answer {
-  color: #42b983;
-  margin-left: 15px;
-}
-
-.parse-content {
-  line-height: 1.6;
-  color: #34495e;
-}
 
 /* 处理数学公式样式（需要配合数学公式库使用） */
 :deep(.math-formula) {
   font-family: "KaTeX", sans-serif;
   font-size: 1.1em;
+}
+.result-container {
+  // 通用折叠面板样式
+  .el-collapse {
+    border: none;
+    margin-bottom: 20px;
+
+    // 深度选择器覆盖element样式
+    &:deep(.el-collapse-item) {
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      transition: all 0.3s;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    // 标题区域样式
+    &:deep(.el-collapse-item__header) {
+      background-color: #f9fafb;
+      padding: 16px 20px;
+      border-bottom: none;
+      font-weight: 600; // 加粗标题
+      color: #2d333a;
+
+      .collapse-title {
+        letter-spacing: 0.5px;
+        font-size: 16px;
+        font-weight: 700;
+      }
+    }
+
+    // 内容区域样式
+    &:deep(.el-collapse-item__content) {
+      padding: 20px;
+      background: white;
+      text-align: left; // 强制左对齐
+
+      .left-align {
+        text-align: left;
+        > * {
+          text-align: left !important; // 强制继承左对齐
+        }
+      }
+    }
+  }
+
+  // 题目特殊样式
+  .collapse-card-question {
+    &:deep(.el-collapse-item__header) {
+      background-color: #f3f8ff;
+    }
+
+    .question-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .correct-answer {
+
+      .answer-title {
+        font-size: 15px;
+        font-weight: 500;
+        color: #42b983;
+      }
+
+      .answer-content {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  // 底部特殊样式
+  .collapse-card-footer {
+    &:deep(.el-collapse-item__header) {
+      background-color: #fff7f0;
+    }
+  }
+
+  // 数学公式样式保持
+  &:deep(.katex) {
+    font-size: 1.1em !important;
+    line-height: 1.2;
+  }
 }
 </style>
