@@ -57,10 +57,16 @@
 </template>
 
 <script setup lang="ts">
-import { Str } from '../../../mock/001.ts'; // 假设这是你的 XML 字符串
+// import { Str } from '../../../mock/001.ts'; // 假设这是你的 XML 字符串
+import { storeToRefs } from 'pinia';
 import { ref, onMounted, watch } from 'vue';
 import katex from 'katex';
 import 'katex/dist/katex.css';
+import { AiResult } from '@/stores/AiResult';
+
+const AiStore = AiResult();
+
+const { AiParseResult } = storeToRefs(AiStore);
 
 // 类型定义
 interface QuestionItem {
@@ -167,7 +173,7 @@ const activeQuestions = ref<string[]>(resultData.value.questions.map((_, index) 
 const activeFooters = ref(['footer'])
 
 onMounted(() => {
-  resultData.value = parseResultXML(Str);
+  resultData.value = parseResultXML(AiParseResult.value);
 });
 
 // 动态更新问题展开状态
