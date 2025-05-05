@@ -5,7 +5,8 @@
         <div class="header-left">
           <router-link to="/" @click.native="handleHomeClick" class="header-link">
             <img src="@/assets/logo.jpg" class="home-link" />
-            <span class="title-text">QuickCheck</span>
+            <span class="title-text" v-if="currentLanguage === 'en'">QuickCheck</span>
+            <span class="title-text" v-else>知卷AI</span>
           </router-link>
         </div>
         <div class="header-middle" v-if="showButton">
@@ -56,17 +57,16 @@ const showButton = computed(() => route.path !== '/');
 const { locale } = useI18n();
 const langConfig = {
   'zh-CN': '中文',
-  en: 'english',
+  en: 'English',
 }
 const languages = ref([
   { value: 'zh-CN', label: '中文' },
   { value: 'en', label: 'English' },
 ])
-const currentLanguage = ref(langConfig[locale.value])
+const currentLanguage = ref(locale.value)
 
 const handleLanguageChange = (val) => {
   locale.value = val;
-
 }
 
 const handleHomeClick = () => {};
@@ -112,10 +112,11 @@ const modalVisible = ref(false)
       }
 
       .title-text {
-        font-family: 'Dancing Script', sans-serif;
-        font-size: 30px;
-        font-weight: 1000;
+        font-family: 'Roboto', 'SF Pro Display', 'PingFang SC', sans-serif;
+        font-size: 28px;
+        font-weight: 700;
         color: #22405c;
+        letter-spacing: 0.5px;
       }
     }
   }

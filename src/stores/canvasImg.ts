@@ -12,9 +12,11 @@ interface fileType {
 export const useCanvasImg = defineStore('canvasImg', () => {
   const canvasFile = ref<fileType | null>(null);
   const imgSrc = ref<string>('');
+  const fileType = ref<string>('');
 
   return {
     canvasFile,
     imgSrc,
+    fileType,
   }
 })
