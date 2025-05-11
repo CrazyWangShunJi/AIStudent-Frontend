@@ -5,7 +5,7 @@ export const getAiService = (data: string) => {
   const currentLocale = i18n.global.locale.value; // Get current language
   console.log('Sending request to AI service with locale:', currentLocale);
   // Send data and language in the POST body
-  return service.post('/api/ai/imageParse', { 
+  return service.post('/ai/imageParse', { 
     fileData: data, // Changed key 
     language: currentLocale 
   });
