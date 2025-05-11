@@ -140,6 +140,10 @@ import { useRouter } from 'vue-router';
 import { getAiService } from '@/server/utils';
 import eventBus from '@/utils/eventBus';
 import { useI18n } from 'vue-i18n';
+import { getDocument } from "pdfjs-dist/legacy/build/pdf.mjs";
+
+// 配置 Worker 路径（必须放在最顶部）
+const pdfPath = "../../web/compressed.tracemonkey-pldi-09.pdf";
 
 const { t } = useI18n();
 const router = useRouter()
@@ -231,6 +235,34 @@ const loadFile = async (file: File) => {
     };
     reader.readAsDataURL(file);
   } else if (file.type === 'application/pdf') {
+    try {
+      console.log('file', file)
+      const arrayBuffer = await file.arrayBuffer()
+
+      const loadingTask = getDocument(pdfPath);
+      const pdf = await getDocument({ data: new Uint8Array(arrayBuffer) }).promise
+      console.log('pdf', pdf)
+      const page = await pdf.getPage(1)
+      
+      const viewport = page.getViewport({ scale: 2 }) // 缩放比例建议2倍清晰度
+      const canvas = document.createElement('canvas')
+      const context = canvas.getContext('2d')!
+      canvas.width = viewport.width
+      canvas.height = viewport.height
+
+      await page.render({
+        canvasContext: context,
+        viewport: viewport
+      }).promise
+
+
+      const base64 = canvas.toDataURL('image/jpeg', 0.85)
+      console.log('pdf', imgSrc.value)
+      imgSrc.value = base64
+    } catch (error) {
+      ElMessage.error(t('pdfConvertError'))
+      console.error('PDF转换失败:', error)
+    }
     imgSrc.value = '';
     eventBus.emit('startProgress');
     getAiResult('pdf_placeholder');
