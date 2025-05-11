@@ -253,7 +253,6 @@ const handleUpload = (uploadFile: UploadFile) => {
   display: flex;
   justify-content: center;
   padding: 0;
-  overflow-y: auto;
   background-color: #f9fafc;
 }
 
