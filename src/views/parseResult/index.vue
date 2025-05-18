@@ -11,6 +11,7 @@
            alt="Uploaded Image Thumbnail" 
            class="image-thumbnail" 
            @error="onImageError"
+           @click="showImagePreview = true"
         />
         <!-- Placeholder for PDF -->
         <div v-else-if="fileType === 'application/pdf'" class="pdf-placeholder">
@@ -20,6 +21,8 @@
         </div>
          <div v-else class="no-preview">{{ $t('resultPage.noPreview') }}</div>
       </div>
+      <!-- 图片大图预览弹窗 -->
+      <ImagePreviewer v-if="showImagePreview" :images="[imgSrc]" :start-index="0" @close="showImagePreview = false" />
     </div>
 
     <!-- 结果分析区 -->
@@ -88,6 +91,7 @@ import { ElCollapse, ElCollapseItem } from 'element-plus';
 import DOMPurify from 'dompurify';
 import { useI18n } from 'vue-i18n';
 import MarkdownRenderer from '@/components/MarkdownRenderer.vue'; // Import the new component
+import ImagePreviewer from '@/components/ImagePreviewer.vue';
 
 const { t } = useI18n();
 
@@ -102,6 +106,7 @@ const { AiParseResult } = storeToRefs(aiResultStore);
 const defaultImage = ref('@/assets/placeholder.png'); 
 const parsedResult = ref<ParsedAnalysis | null>(null);
 const activeCollapseNames = ref<string[]>([]);
+const showImagePreview = ref(false);
 
 // Types (Removed error_analysis)
 interface ParsedHeader {
