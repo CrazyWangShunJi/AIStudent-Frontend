@@ -1,114 +1,108 @@
 <template>
-  <div class="three-column-wrapper">
+  <div class="demo-progress" v-if="AiProgress !== 0 && ProgressStatus !== 'success'">
+    <el-progress
+      :percentage="AiProgress" 
+      :stroke-width="4"
+      :show-text="false"
+      :status="ProgressStatus"
+      :color="customProgressColor"
+    />
+  </div>
+  <div class="wrapper">
     <div class="content-container">
-      <!-- 左侧边栏 -->
-      <LeftView />
-
-      <!-- 主内容区 -->
-      <main class="main-content">
-        <MainUpload />
-      </main>
-
-      <!-- 右侧边栏 -->
-      <RightView />
+      <div class="section">
+        <card />
+      </div>
     </div>
   </div>
+  
 </template>
 
 <script setup lang="ts">
-import MainUpload from '../components/MainUpload/index.vue';
-import LeftView from '../components/LeftView/index.vue';
-import RightView from '../components/RightView/index.vue';
+import { ref, onMounted, computed, onBeforeUnmount } from 'vue';
+import card from '@/components/MainHome/card.vue';
+import eventBus from '@/utils/eventBus';
 
+const AiProgress = ref(0);
+const ProgressStatus = ref('active');
+
+let progressTimer: any = null
+
+// 自定义进度条颜色（根据进度变化）
+const customProgressColor = computed(() => {
+  if (ProgressStatus.value === 'success') return '#67C23A';
+  return `hsl(${Math.floor(AiProgress.value * 1.2)}, 80%, 50%)`; // 颜色渐变
+});
+
+// 分阶段速度控制
+const getIncrement = () => {
+  const progress = AiProgress.value;
+  if (progress < 50) {
+    return 5 + Math.random() * 5; // 快速阶段：5~13
+  } else if (progress < 80) {
+    return 2 + Math.random() * 2; // 中速阶段：2~5
+  } else {
+    return 0.5 + Math.random();  // 慢速阶段：0.5~1.5
+  }
+};
+
+const startProgress = () => {
+
+  
+  AiProgress.value = 0;
+  ProgressStatus.value = 'active'
+
+  progressTimer = setInterval(() => {
+    const increment = getIncrement();
+    AiProgress.value = Math.min(AiProgress.value + increment, 99);
+  }, 200)
+}
+
+const endProgess = () => {
+  if (progressTimer) {
+    clearInterval(progressTimer);
+    progressTimer = null;
+  }
+  progressTimer = null;
+  AiProgress.value = 100;
+  ProgressStatus.value = 'success';
+}
+
+onMounted(() => {
+  eventBus.on('startProgress', startProgress);
+  eventBus.on('endProgess', endProgess);
+})
+
+onBeforeUnmount(() => {
+  eventBus.off('startProgress', startProgress);
+  eventBus.off('endProgess', endProgess);
+  if (progressTimer) clearInterval(progressTimer);
+});
 </script>
 <style scoped lang="less">
-.three-column-wrapper {
-  margin: 0 auto;
-  padding: 20px;
-  height: 100%;
-  box-sizing: border-box;
-  display: flex;
-}
+.demo-progress {
 
-.content-container {
+}
+.wrapper {
+  background-color: #ffffff;
+  height: 100%; // 使用视口高度确保撑满
   width: 100%;
-  height:100%;
   display: flex;
-  gap: 20px;
-  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-  // 公共侧边栏样式
-  aside {
-    flex-shrink: 0;  // 禁止侧边栏压缩
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-
-  .left-sidebar {
-    width: 200px;
-    ul {
-      list-style: none;
-      padding: 0;
-      li {
-        padding: 8px 0;
-        cursor: pointer;
-        &:hover {
-          color: #409eff;
-        }
-      }
-    }
-  }
-
-  .main-content {
-    flex-grow: 1;  // 主内容区自动填充剩余空间
-    min-width: 0;  // 修复flex内容溢出问题
-    background: #f2f4f7;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-
-    article {
-      margin-bottom: 20px;
-      padding: 15px;
-      border-bottom: 1px solid #eee;
-    }
-  }
-
-  .right-sidebar {
-    width: 400px;
-    .widget {
-      button {
-        display: block;
-        width: 100%;
-        margin: 10px 0;
-        padding: 8px;
-      }
-    }
-  }
-}
-
-// 响应式处理
-@media (max-width: 1200px) {
   .content-container {
-    .right-sidebar {
-      display: none;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .content-container {
-    flex-direction: column;
-
-    .left-sidebar {
+    padding: 5rem 1.5rem 0;
+    width: 100%;
+    max-width: 1378px;
+    margin: 0 auto;
+    height: 100%;
+    .section {
       width: 100%;
-      margin-bottom: 20px;
-    }
-
-    .main-content {
-      order: 1; // 主内容下移
+      height: 585px;      // 直接固定高度
     }
   }
 }
+
 </style>

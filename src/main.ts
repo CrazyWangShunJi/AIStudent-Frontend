@@ -1,4 +1,5 @@
 import './assets/main.css'
+import 'katex/dist/katex.min.css';
 
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
@@ -14,6 +15,8 @@ app.use(createPinia());
 app.use(ElementPlus);
 app.use(router);
 app.use(i18n);
+
+
 setupElementPlus(app);
 
 app.mount('#app');
