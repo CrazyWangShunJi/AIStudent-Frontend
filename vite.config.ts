@@ -3,19 +3,14 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import sitemap from 'vite-plugin-sitemap'
-import { routes } from './src/router/index'
+// import { routes } from './src/router/index'
 
-const paths = routes.map(route => route.path)
+// const paths = routes.map(route => route.path)
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    sitemap({
-      hostname: 'https://yourdomain.com',
-      dynamicRoutes: paths
-    })
   ],
   resolve: {
     alias: {
