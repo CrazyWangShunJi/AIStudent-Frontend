@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router';
 import PublicHeader from './components/PublicHeader.vue'
+import Footer from './components/Footer.vue'
 </script>
 
 <template>
@@ -12,6 +13,7 @@ import PublicHeader from './components/PublicHeader.vue'
       </KeepAlive>
     </RouterView>
   </div>
+  <Footer/>
 </template>
 
 <style lang="less">
