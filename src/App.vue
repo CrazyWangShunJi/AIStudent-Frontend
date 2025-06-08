@@ -76,10 +76,10 @@ a:hover {
 
 .main-container {
   margin-top: 60px;
-  height: calc(100vh - 60px);  /* 精确计算可视高度 */
-  overflow-y: auto;           /* 允许垂直滚动 */
-  overflow-x: hidden;          /* 防止水平滚动 */
-  background: #f9fafc;      /* 背景色与 main.vue 统一 */
+  height: calc(100vh - 60px);
+  overflow-y: auto;  
+  overflow-x: hidden;  
+  background: #f9fafc;    
 
   /* 防止内容抖动 */
   padding-left: calc(100vw - 100%);

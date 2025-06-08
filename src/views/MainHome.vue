@@ -85,22 +85,28 @@ onBeforeUnmount(() => {
 }
 .wrapper {
   background-color: #ffffff;
-  height: 100%; // 使用视口高度确保撑满
+  min-height: 100vh; // 使用最小视口高度确保撑满
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  padding: 0;
 
   .content-container {
-    padding: 5rem 1.5rem 0;
+    padding: 0;
     width: 100%;
-    max-width: 1378px;
     margin: 0 auto;
-    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    
     .section {
       width: 100%;
-      height: 585px;      // 直接固定高度
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }

@@ -268,25 +268,25 @@ const handleUpload = (uploadFile: ElUploadFile) => {
 .main-home-bg {
   background: #f3f8ff;
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  padding: 20px 0;
+  box-sizing: border-box;
 }
 .main {
   width: 100%;
-  min-height: 100vh;
-  height: 1px;
+  max-width: 1000px;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding: 0;
+  align-items: center;
   background-color: transparent;
 }
 .content-wrapper {
   width: 100%;
-  max-width: 900px;
-  padding: 32px 16px 0 16px;
+  max-width: 1200px;
+  padding: 20px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -402,8 +402,9 @@ const handleUpload = (uploadFile: ElUploadFile) => {
   
   .features-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
+    justify-items: center;
     
     .feature-item {
       background-color: #ffffff;
@@ -503,10 +504,59 @@ const handleUpload = (uploadFile: ElUploadFile) => {
   }
 }
 
+// 响应式设计
 @media (max-width: 768px) {
-   .features-container {
-      grid-template-columns: 1fr;
-   }
+  .main-home-bg {
+    padding: 10px 0;
+  }
+  
+  .content-wrapper {
+    padding: 15px;
+    max-width: 100%;
+  }
+  
+  .card-block {
+    padding: 20px 16px;
+    margin-bottom: 20px;
+  }
+  
+  .features-container {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .product-description {
+    .description-title {
+      font-size: 28px;
+    }
+  }
+  
+  /deep/ .el-upload-dragger {
+    height: 220px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-wrapper {
+    padding: 10px;
+  }
+  
+  .card-block {
+    padding: 16px 12px;
+  }
+  
+  .product-description {
+    .description-title {
+      font-size: 24px;
+    }
+    .description-text {
+      font-size: 14px;
+    }
+  }
+  
+  /deep/ .el-upload-dragger {
+    height: 200px !important;
+  }
 }
 
 .loading-dialog {
