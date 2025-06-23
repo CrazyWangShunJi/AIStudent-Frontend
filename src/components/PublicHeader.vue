@@ -33,7 +33,7 @@
             />
           </el-select>
 
-          <el-avatar :icon="UserFilled" class="user-avatar" :size="50"/>
+          <el-avatar :icon="UserFilled" class="user-avatar" :size="50" @click="showLoginDialog = true"/>
         </div>
       </div>
     </div>
@@ -65,6 +65,8 @@
         </div>
       </div>
     </el-dialog>
+
+    <LoginDialog v-model:visible="showLoginDialog" />
   </header>
 </template>
 
@@ -75,6 +77,7 @@ import { UserFilled } from '@element-plus/icons-vue'
 import { ElHeader, ElSelect, ElOption, ElAvatar, ElButton } from 'element-plus';
 import { useRoute } from 'vue-router';
 import card from '@/components/MainHome/card.vue';
+import LoginDialog from './LoginDialog.vue'
 
 const route = useRoute();
 const showButton = computed(() => route.path !== '/');
@@ -96,6 +99,7 @@ const handleLanguageChange = (val) => {
 const handleHomeClick = () => {};
 
 const modalVisible = ref(false)
+const showLoginDialog = ref(false)
 </script>
 
 <style lang="less" scoped>
