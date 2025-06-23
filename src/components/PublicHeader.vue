@@ -112,6 +112,7 @@ const showLoginDialog = ref(false)
   height: 64px;
   padding: 0;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  z-index: 999;
 }
 
 /* 新增外层容器样式 */
@@ -129,6 +130,7 @@ const showLoginDialog = ref(false)
   .header-left {
     display: flex;
     align-items: center;
+    flex: 1;
     .header-link {
       display: flex;
       align-items: center;
@@ -251,6 +253,79 @@ const showLoginDialog = ref(false)
       font-size: 14px;
       .drag-special-text {
         color: #5db1ff;
+      }
+    }
+  }
+}
+
+// 移动端响应式适配
+@media (max-width: 768px) {
+  .main-header {
+    height: 64px;
+  }
+  
+  .header-content {
+    padding: 0 10px;
+    
+    .header-left {
+      .header-link {
+        .home-link {
+          height: 36px;
+          margin-right: 10px;
+        }
+        
+        .title-text {
+          font-size: 22px;
+          letter-spacing: 0.3px;
+        }
+      }
+    }
+    
+    .header-middle {
+      .long-ask-button {
+        display: none;
+      }
+    }
+    
+    .header-right {
+      gap: 8px;
+      
+      .user-avatar {
+        width: 40px !important;
+        height: 40px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .header-content {
+    padding: 0 8px;
+    
+    .header-left {
+      .header-link {
+        .home-link {
+          height: 32px;
+          margin-right: 8px;
+        }
+        
+        .title-text {
+          font-size: 18px;
+          letter-spacing: 0.2px;
+        }
+      }
+    }
+    
+    .header-right {
+      gap: 6px;
+      
+      /deep/ .el-select--small .el-select__wrapper {
+        width: 50px;
+      }
+      
+      .user-avatar {
+        width: 36px !important;
+        height: 36px !important;
       }
     }
   }

@@ -81,17 +81,21 @@ onBeforeUnmount(() => {
 </script>
 <style scoped lang="less">
 .demo-progress {
-
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
 .wrapper {
   background-color: #ffffff;
-  min-height: 100vh; // 使用最小视口高度确保撑满
+  min-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 0;
+  // padding: 64px 0 0 0; // 给顶部固定导航留出空间
 
   .content-container {
     padding: 0;
@@ -99,16 +103,35 @@ onBeforeUnmount(() => {
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; // 改为从顶部开始
     flex: 1;
     
     .section {
       width: 100%;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start; // 改为从顶部开始
     }
   }
 }
 
+// 移动端适配
+@media (max-width: 768px) {
+  .wrapper {
+    // padding: 64px 0 0 0; // 移动端也保持顶部间距
+    min-height: 100vh;
+  }
+  
+  .content-container {
+    .section {
+      align-items: flex-start;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    // padding: 64px 0 0 0;
+  }
+}
 </style>

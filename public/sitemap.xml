@@ -2,35 +2,85 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://YOUR_DOMAIN.com/</loc>
+    <loc>https://quizcheck.ai/</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://YOUR_DOMAIN.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://YOUR_DOMAIN.com/en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://quizcheck.ai/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://quizcheck.ai/en" />
   </url>
   <url>
-    <loc>https://YOUR_DOMAIN.com/parseResult</loc>
+    <loc>https://quizcheck.ai/en</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://quizcheck.ai/en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://quizcheck.ai/" />
+  </url>
+  <url>
+    <loc>https://quizcheck.ai/parseResult</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://quizcheck.ai/parseResult" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://quizcheck.ai/en/parseResult" />
   </url>
   <url>
-    <loc>https://YOUR_DOMAIN.com/ai-试卷解析</loc>
+    <loc>https://quizcheck.ai/en/parseResult</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://quizcheck.ai/en/parseResult" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://quizcheck.ai/parseResult" />
+  </url>
+  <!-- AI Parser related pages for better English SEO -->
+  <url>
+    <loc>https://quizcheck.ai/ai-test-parser</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://YOUR_DOMAIN.com/ai-作业解析</loc>
+    <loc>https://quizcheck.ai/ai-homework-analyzer</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://YOUR_DOMAIN.com/ai-题目解析</loc>
+    <loc>https://quizcheck.ai/ai-quiz-checker</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.7</priority>
+  </url>
+  <!-- Additional landing pages for SEO -->
+  <url>
+    <loc>https://quizcheck.ai/how-it-works</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://quizcheck.ai/features</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://quizcheck.ai/about</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://quizcheck.ai/privacy</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://quizcheck.ai/terms</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset> 

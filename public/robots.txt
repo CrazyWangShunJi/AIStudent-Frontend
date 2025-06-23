@@ -1,28 +1,44 @@
 User-agent: *
 Allow: /
 
-# 允许搜索引擎抓取所有内容
+# Allow search engines to crawl all content
 Allow: /api/
 Allow: /assets/
 Allow: /images/
+Allow: /en/
+Allow: /ai-test-parser
+Allow: /ai-homework-analyzer
+Allow: /ai-quiz-checker
 
-# 禁止抓取敏感或无用页面
+# Disallow sensitive or useless pages
 Disallow: /admin/
 Disallow: /private/
 Disallow: *.json$
 Disallow: /node_modules/
 
-# 网站地图 - 部署时请修改为实际域名
-Sitemap: https://YOUR_DOMAIN.com/sitemap.xml
+# Sitemap location
+Sitemap: https://quizcheck.ai/sitemap.xml
 
-# 爬取延迟 (百度爬虫)
+# Major search engine crawlers
+User-agent: Googlebot
+Crawl-delay: 1
+
+User-agent: Bingbot
+Crawl-delay: 1
+
+User-agent: Slurp
+Crawl-delay: 1
+
+# Chinese search engines
 User-agent: Baiduspider
 Crawl-delay: 1
 
-# 爬取延迟 (360爬虫)  
 User-agent: 360Spider
 Crawl-delay: 1
 
-# 搜狗爬虫
 User-agent: Sogou web spider
+Crawl-delay: 1
+
+# Russian search engine
+User-agent: YandexBot
 Crawl-delay: 1 

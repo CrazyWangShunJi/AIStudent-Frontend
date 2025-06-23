@@ -37,4 +37,45 @@
 .footer-links span {
   color: #ccc;
 }
+
+/* 移动端响应式适配 */
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 24px 16px 12px 16px; /* 减少上下间距，增加左右间距 */
+    font-size: 12px; /* 稍小的字体 */
+  }
+  
+  .footer-links {
+    margin-bottom: 6px;
+  }
+  
+  .footer-links a {
+    margin: 0 6px; /* 减少链接间距 */
+  }
+}
+
+@media (max-width: 480px) {
+  .site-footer {
+    padding: 20px 12px 10px 12px; /* 更紧凑的布局 */
+    font-size: 11px;
+  }
+  
+  .footer-links {
+    margin-bottom: 4px;
+    /* 可以考虑将链接换行显示 */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .footer-links a {
+    margin: 0 4px;
+  }
+  
+  .footer-links span {
+    margin: 0 2px;
+  }
+}
 </style> 

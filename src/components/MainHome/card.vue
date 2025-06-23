@@ -267,11 +267,11 @@ const handleUpload = (uploadFile: ElUploadFile) => {
 <style lang="less" scoped>
 .main-home-bg {
   background: #f3f8ff;
-  min-height: 100vh;
+  min-height: calc(100vh - 64px); // 考虑头部导航高度
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; // 从顶部开始
   padding: 20px 0;
   box-sizing: border-box;
 }
@@ -280,7 +280,7 @@ const handleUpload = (uploadFile: ElUploadFile) => {
   max-width: 1000px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; // 从顶部开始
   background-color: transparent;
 }
 .content-wrapper {
@@ -508,16 +508,19 @@ const handleUpload = (uploadFile: ElUploadFile) => {
 @media (max-width: 768px) {
   .main-home-bg {
     padding: 10px 0;
+    min-height: calc(100vh - 64px); // 确保在移动端也充满屏幕
+    align-items: flex-start; // 从顶部开始
   }
   
   .content-wrapper {
-    padding: 15px;
+    padding: 10px 15px; // 减少左右间距，增加内容显示空间
     max-width: 100%;
   }
   
   .card-block {
     padding: 20px 16px;
     margin-bottom: 20px;
+    border-radius: 12px; // 稍微减少圆角
   }
   
   .features-container {
@@ -526,36 +529,111 @@ const handleUpload = (uploadFile: ElUploadFile) => {
   }
   
   .product-description {
+    margin: 10px 0 15px; // 减少上下间距
+    
     .description-title {
       font-size: 28px;
+      line-height: 1.2; // 减少行高
     }
+    
+    .description-text {
+      font-size: 15px;
+      line-height: 1.4;
+    }
+  }
+  
+  .upload-container-wrapper {
+    margin-bottom: 30px; // 减少底部间距
   }
   
   /deep/ .el-upload-dragger {
     height: 220px !important;
   }
+  
+  .features-section {
+    margin-bottom: 20px; // 减少间距
+    
+    .features-title {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+  }
+  
+  .faq-section {
+    margin-bottom: 30px;
+    
+    .faq-title {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+  }
 }
 
 @media (max-width: 480px) {
+  .main-home-bg {
+    padding: 5px 0; // 进一步减少padding
+  }
+  
   .content-wrapper {
-    padding: 10px;
+    padding: 5px 10px; // 更紧凑的布局
   }
   
   .card-block {
     padding: 16px 12px;
+    margin-bottom: 15px;
+    border-radius: 10px;
   }
   
   .product-description {
+    margin: 5px 0 10px;
+    
     .description-title {
       font-size: 24px;
+      line-height: 1.1;
     }
     .description-text {
       font-size: 14px;
+      line-height: 1.3;
     }
+  }
+  
+  .upload-container-wrapper {
+    margin-bottom: 20px;
   }
   
   /deep/ .el-upload-dragger {
     height: 200px !important;
+  }
+  
+  .features-section {
+    margin-bottom: 15px;
+    
+    .features-title {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+    
+    .feature-item {
+      padding: 15px;
+      
+      .feature-name {
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
+      
+      .feature-desc {
+        font-size: 13px;
+      }
+    }
+  }
+  
+  .faq-section {
+    margin-bottom: 20px;
+    
+    .faq-title {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
   }
 }
 
