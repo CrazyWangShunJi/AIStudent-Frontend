@@ -1,15 +1,58 @@
 {
-  "title": "智能试卷分析系统",
+  "title": "知卷AI - 专业AI试卷解析工具",
+  "subtitle": "智能AI试卷解析，支持AI作业解析、AI题目解析、拍照搜题AI解析。上传试卷图片，AI自动解题分析，提供详细解题步骤和错题本功能。",
+  "uploadText": "上传",
+  "uploadType": "试卷图片或PDF",
+  "uploadAction": "开始AI试卷解析",
+  "dragText": "拖拽文件到此处或",
+  "clickUpload": "点击上传",
+  "featuresTitle": "为什么选择知卷AI？",
+  "feature1": {
+    "name": "AI试卷解析",
+    "desc": "先进的AI技术，智能识别试卷内容，自动进行题目解析和答案分析"
+  },
+  "feature2": {
+    "name": "AI作业解析",
+    "desc": "支持多学科AI作业解析，数学、语文、英语等科目的智能解题助手"
+  },
+  "feature3": {
+    "name": "拍照搜题AI解析",
+    "desc": "拍照上传试卷图片，AI自动识别题目，提供详细的解题步骤和知识点总结"
+  },
+  "feature4": {
+    "name": "AI学习助手",
+    "desc": "智能错题本功能，AI分析学习薄弱点，个性化学习建议，提升学习效率"
+  },
+  "faqTitle": "常见问题 - AI试卷解析相关",
+  "faq": {
+    "title": "常见问题",
+    "q1": "知卷AI如何进行AI试卷解析？",
+    "a1": "知卷AI使用先进的人工智能技术，您只需上传试卷图片或PDF文件，AI会自动识别题目内容，进行智能解析，提供详细的解题步骤和标准答案。支持数学、语文、英语、物理、化学等多个学科。",
+    "q2": "AI作业解析支持哪些格式？",
+    "a2": "知卷AI支持JPEG、PNG格式的图片文件，以及PDF格式的文档。您可以直接拍照上传试卷，或者上传扫描的PDF文件进行AI解析。",
+    "q3": "AI题目解析的准确率如何？",
+    "a3": "知卷AI采用最新的深度学习算法，对于标准化试题的识别和解析准确率可达95%以上。特别在数学计算、选择题分析等方面表现优异。",
+    "q4": "使用AI试卷解析工具需要付费吗？",
+    "a4": "知卷AI提供免费的基础AI试卷解析服务，每日可免费使用多次。我们致力于让每个学生都能享受到AI技术带来的学习便利。",
+    "q5": "AI学习助手有哪些功能？",
+    "a5": "知卷AI的学习助手功能包括：智能错题本统计、知识点薄弱分析、个性化学习建议、解题思路总结等，帮助学生更有针对性地提升学习效果。",
+    "q6": "拍照搜题AI解析支持手写题目吗？",
+    "a6": "是的，知卷AI的OCR识别技术支持手写和印刷体题目的识别。对于清晰的手写内容，AI可以准确识别并进行解题分析。"
+  },
+  "loadingText": "AI正在解析中，请稍候...",
+  "errorFileSize": "文件大小不能超过 {size}MB",
+  "errorFileType": "仅支持JPEG/PNG/PDF格式",
+  "errorAnalysis": "AI解析失败，请重试",
   "home": "首页",
   "OcrResult": "OCR解析结果区域",
   "AIResult": "AI解析结果区域",
-  "clickUpload": "点击或拖拽上传图片",
-  "supportLimit":"支持格式：JPEG/PNG (最大5MB)",
-  "OcrTitle": "Ocr解析结果",
-  "AITitle": "AI解析结果",
+  "supportLimit": "支持格式：JPEG/PNG/PDF (最大10MB)",
+  "OcrTitle": "文本识别结果",
+  "AITitle": "AI智能解析",
   "configMenu": "配置菜单",
   "uploadFile": "上传文件",
   "uploadMaxLimit": "文件大小不能超过 {maxFileSize}MB",
-  "uploadFileTypeLimit": "仅支持JPG/JPEG/PNG格式",
-  "uploadCountLimit": "今日可用次数：5次"
+  "uploadFileTypeLimit": "仅支持JPG/JPEG/PNG/PDF格式",
+  "uploadCountLimit": "今日可用次数：5次",
+  "pdfConvertError": "PDF转换失败，请重试"
 }

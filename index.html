@@ -1,67 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8">
-    <title>QuizCheck - AI Homework Analyzer for Students & Teachers | Free Quiz Checker</title>
+    <title>知卷AI - AI试卷解析 | AI作业解析 | AI题目解析 | 智能试卷分析工具</title>
     <meta name="description" 
-          content="QuizCheck uses AI to analyze exams and homework instantly. Get automatic scoring, mistake diagnosis, and personalized learning tips for students and teachers. 100% Free Online Tool">
+          content="知卷AI是专业的AI试卷解析工具，支持AI作业解析、AI题目解析、智能试卷分析。拍照上传试卷，AI自动解题、错题分析、知识点总结。免费AI学习助手，让学习更高效！">
     <meta name="keywords" 
-          content="AI homework helper, free quiz checker, exam analysis tool, automatic test scoring, student learning aid, teacher grading assistant, AI education tool">
+          content="AI试卷解析,AI题目解析,AI作业解析,AI讲题,智能试卷分析,AI解题神器,AI学习助手,AI错题本,AI知识点总结,拍照搜题AI解析,AI homework help,AI test paper analyzer,AI question solver">
     
-    <meta property="og:title" content="QuizCheck - AI Homework Analysis Tool for Students & Teachers">
+    <!-- 英文版本的alternate标签 -->
+    <link rel="alternate" hreflang="en" href="https://quizcheck.ai/en">
+    <link rel="alternate" hreflang="zh-CN" href="https://quizcheck.ai">
+    <link rel="canonical" href="https://quizcheck.ai">
+    
+    <meta property="og:title" content="知卷AI - 专业AI试卷解析工具 | AI作业解析 | 智能学习助手">
     <meta property="og:description" 
-          content="Analyze exams in seconds with AI. Instant mistake detection and learning suggestions. Free for students and educators.">
-    <meta property="og:image" content="https://quizcheck.ai/images/og-QuizCheck.jpg"> 
+          content="知卷AI提供专业的AI试卷解析服务，支持拍照上传试卷，AI自动解题、错题分析、知识点总结。免费使用，让学习更高效！">
+    <meta property="og:image" content="https://quizcheck.ai/images/og-zhijuan-ai.jpg"> 
     <meta property="og:url" content="https://quizcheck.ai">
     <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_CN">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@QuizCheck">
-    <meta name="twitter:title" content="QuizCheck AI - Free Homework Analysis Tool">
-    <meta name="twitter:description" content="AI-powered exam checker for students and teachers. Get instant feedback now!">
-    <meta name="twitter:image" content="https://quizcheck.ai/images/twitter-card.jpg">
+    <meta name="twitter:site" content="@ZhijuanAI">
+    <meta name="twitter:title" content="知卷AI - AI试卷解析工具">
+    <meta name="twitter:description" content="专业AI试卷解析、AI作业解析工具。拍照上传，AI自动解题分析！">
+    <meta name="twitter:image" content="https://quizcheck.ai/images/twitter-zhijuan.jpg">
 
-    <!-- 结构化数据（Schema.org） -->
+    <!-- 结构化数据（Schema.org）- 中文优化版本 -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "EducationalOrganization",
-      "name": "QuizCheck",
+      "@type": "SoftwareApplication",
+      "name": "知卷AI",
+      "alternateName": ["AI试卷解析", "AI作业解析工具", "QuizCheck"],
       "url": "https://quizcheck.ai",
       "logo": "https://quizcheck.ai/images/logo.png",
-      "description": "AI-powered homework and exam analysis tool for education",
-      "sameAs": [
-        "https://twitter.com/QuizCheck",
-        "https://www.facebook.com/QuizCheck"
-      ],
+      "description": "专业的AI试卷解析工具，支持AI作业解析、AI题目解析、智能试卷分析、拍照搜题AI解析等功能",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web Browser",
       "offers": {
         "@type": "Offer",
         "price": "0",
-        "priceCurrency": "USD",
+        "priceCurrency": "CNY",
         "availability": "https://schema.org/InStock"
+      },
+      "featureList": [
+        "AI试卷解析",
+        "AI作业解析", 
+        "AI题目解析",
+        "智能试卷分析",
+        "AI讲题",
+        "AI错题本",
+        "AI知识点总结",
+        "拍照搜题AI解析"
+      ],
+      "inLanguage": "zh-CN",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student"
       }
+    }
+    </script>
+
+    <!-- 面包屑导航结构化数据 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "首页",
+        "item": "https://quizcheck.ai"
+      }]
+    }
+    </script>
+
+    <!-- FAQ结构化数据 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "知卷AI如何进行AI试卷解析？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "知卷AI使用先进的人工智能技术，用户只需上传试卷图片或PDF，AI会自动识别题目内容，进行智能解析，提供详细的解题步骤和答案。"
+        }
+      }, {
+        "@type": "Question", 
+        "name": "AI作业解析支持哪些科目？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "知卷AI支持数学、语文、英语、物理、化学、生物等多个学科的作业解析，涵盖小学到高中各个阶段。"
+        }
+      }, {
+        "@type": "Question",
+        "name": "使用知卷AI需要付费吗？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "知卷AI提供免费的AI试卷解析服务，用户可以免费上传试卷进行智能分析和解题。"
+        }
+      }]
     }
     </script>
 
     <link rel="icon" href="/quizeCheck.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="theme-color" content="#2196F3">
+    <meta name="theme-color" content="#5db1ff">
     <link rel="manifest" href="/manifest.json">
+    
+    <!-- 百度站长验证 -->
+    <meta name="baidu-site-verification" content="YOUR_BAIDU_VERIFICATION_CODE">
+    <!-- 360搜索验证 -->
+    <meta name="360-site-verification" content="YOUR_360_VERIFICATION_CODE">
+    <!-- 搜狗验证 -->
+    <meta name="sogou_site_verification" content="YOUR_SOGOU_VERIFICATION_CODE">
   </head>
   
   <body>
     <!-- 增加爬虫可读的备用内容 -->
     <noscript>
-      <h1>Welcome to QuizCheck - AI Homework Analyzer</h1>
-      <p>Please enable JavaScript to use our AI-powered exam analysis tool.</p>
-      <p>Key Features:
-        <ul>
-          <li>Instant test scoring for teachers</li>
-          <li>Mistake detection for students</li>
-          <li>Personalized learning recommendations</li>
-        </ul>
-      </p>
+      <h1>知卷AI - 专业AI试卷解析工具</h1>
+      <p>知卷AI是专业的AI试卷解析工具，请启用JavaScript以使用我们的AI试卷解析功能。</p>
+      <h2>主要功能：</h2>
+      <ul>
+        <li>AI试卷解析 - 智能识别试卷内容</li>
+        <li>AI作业解析 - 自动解题分析</li>
+        <li>AI题目解析 - 详细解题步骤</li>
+        <li>智能试卷分析 - 错题统计分析</li>
+        <li>AI学习助手 - 个性化学习建议</li>
+        <li>拍照搜题AI解析 - 支持图片上传</li>
+      </ul>
     </noscript>
 
     <div id="app"></div>

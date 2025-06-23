@@ -1,0 +1,28 @@
+{
+  "name": "知卷AI - 专业AI试卷解析工具",
+  "short_name": "知卷AI",
+  "description": "专业的AI试卷解析工具，支持AI作业解析、AI题目解析、智能试卷分析、拍照搜题AI解析",
+  "theme_color": "#5db1ff",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "orientation": "portrait-primary",
+  "lang": "zh-CN",
+  "categories": ["education", "productivity", "utilities"],
+  "keywords": "AI试卷解析,AI作业解析,AI题目解析,智能试卷分析,AI学习助手,拍照搜题",
+  "icons": [
+    {
+      "src": "/quizeCheck.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/quizeCheck.jpg", 
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+} 

@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+
+# 允许搜索引擎抓取所有内容
+Allow: /api/
+Allow: /assets/
+Allow: /images/
+
+# 禁止抓取敏感或无用页面
+Disallow: /admin/
+Disallow: /private/
+Disallow: *.json$
+Disallow: /node_modules/
+
+# 网站地图 - 部署时请修改为实际域名
+Sitemap: https://YOUR_DOMAIN.com/sitemap.xml
+
+# 爬取延迟 (百度爬虫)
+User-agent: Baiduspider
+Crawl-delay: 1
+
+# 爬取延迟 (360爬虫)  
+User-agent: 360Spider
+Crawl-delay: 1
+
+# 搜狗爬虫
+User-agent: Sogou web spider
+Crawl-delay: 1 
